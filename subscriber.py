@@ -17,7 +17,7 @@ def on_message(client, userdata, msg):
     print(f"Subscriber: Received `{msg.payload.decode()}` from `{msg.topic}` topic")
 
 def run():
-    client = mqtt.Client("Subscriber")
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "Subscriber")
     client.on_connect = on_connect
     client.on_message = on_message
     try:

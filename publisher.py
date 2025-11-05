@@ -27,7 +27,7 @@ def publish(client):
         msg_count += 1
 
 def run():
-    client = mqtt.Client("Publisher")
+    client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2, "Publisher")
     client.on_connect = on_connect
     try:
         client.connect(BROKER_ADDRESS, 1884)
