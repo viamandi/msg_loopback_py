@@ -10,6 +10,7 @@ def signal_handler(sig, frame):
     sys.exit(0)
 
 if __name__ == "__main__":
+    print("Pornirea publisher-ului și subscriber-ului MQTT...")
     # Înregistrează handler-ul pentru Ctrl+C
     signal.signal(signal.SIGINT, signal_handler)
 
