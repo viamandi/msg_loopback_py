@@ -14,11 +14,16 @@ if __name__ == "__main__":
     # Înregistrează handler-ul pentru Ctrl+C
     signal.signal(signal.SIGINT, signal_handler)
 
-    # Pornește subscriber-ul în thread-ul principal
-    # Acesta va bloca execuția până la primirea semnalului de oprire
-    subscriber.run()
-
     # Creează și pornește thread-ul pentru publisher
     publisher_thread = threading.Thread(target=publisher.run)
     publisher_thread.daemon = True  # Permite programului principal să se închidă chiar dacă thread-ul rulează
     publisher_thread.start()
+
+    # Creează și pornește thread-ul pentru subscriber
+    subscriber_thread = threading.Thread(target=subscriber.run)
+    subscriber_thread.daemon = True
+    subscriber_thread.start()
+
+    # Așteaptă ca thread-urile să ruleze (programul se va opri cu Ctrl+C)
+    while True:
+        pass

@@ -1,18 +1,14 @@
 import paho.mqtt.client as mqtt
 import os
+from constants import BROKER_HOST, BROKER_PORT, TOPIC
 
-# Citim adresa broker-ului din variabila de mediu MQTT_BROKER_HOST
-# Dacă nu este setată, folosim 'localhost'
-BROKER_HOST = "hostmq"
-BROKER_PORT = 1883
-TOPIC = "test/topic"
-
-def on_connect(self, client, userdata, flags, rc):
-    if rc == 0:
+# Semnătura corectă pentru CallbackAPIVersion.VERSION2
+def on_connect(client, userdata, flags, reason_code, properties):
+    if reason_code == 0:
         print("Subscriber: Connected to MQTT Broker!")
         client.subscribe(TOPIC)
     else:
-        print(f"Subscriber: Failed to connect, return code {rc}\n")
+        print(f"Subscriber: Failed to connect, return code {reason_code}\n")
 
 def on_message(client, userdata, msg):
     print(f"Subscriber: Received `{msg.payload.decode()}` from `{msg.topic}` topic")
