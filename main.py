@@ -82,6 +82,9 @@ def subscriber_loop():
 if __name__ == "__main__":
     print("Pornirea publisher-ului si subscriber-ului MQTT...")
 
+    print("Așteptare 15 secunde înainte de a porni clienții...")
+    time.sleep(15)
+
     # Pornim publisher-ul într-un thread separat
     pub_thread = threading.Thread(target=publisher_loop)
     pub_thread.start()
@@ -95,4 +98,3 @@ if __name__ == "__main__":
         stop_flag.set()
         pub_thread.join() # Așteptăm ca thread-ul publisher-ului să se termine
         print("Aplicație oprită complet.")
-
