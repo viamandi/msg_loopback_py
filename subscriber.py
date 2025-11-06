@@ -3,10 +3,11 @@ import os
 
 # Citim adresa broker-ului din variabila de mediu MQTT_BROKER_HOST
 # Dacă nu este setată, folosim 'localhost'
-BROKER_ADDRESS = os.getenv('MQTT_BROKER_HOST', 'localhost')
+BROKER_HOST = "hostmq"
+BROKER_PORT = 1883
 TOPIC = "test/topic"
 
-def on_connect(client, userdata, flags, rc):
+def on_connect(self, client, userdata, flags, rc):
     if rc == 0:
         print("Subscriber: Connected to MQTT Broker!")
         client.subscribe(TOPIC)
@@ -21,9 +22,9 @@ def run():
     client.on_connect = on_connect
     client.on_message = on_message
     try:
-        client.connect(BROKER_ADDRESS, 1884)
+        client.connect(host=BROKER_HOST, port=BROKER_PORT, keepalive=60)
     except Exception as e:
-        print(f"Subscriber: Error connecting to broker at {BROKER_ADDRESS}: {e}")
+        print(f"Subscriber: Error connecting to broker at {BROKER_HOST}: {e}")
         return
 
     client.loop_forever()
