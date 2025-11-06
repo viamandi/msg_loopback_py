@@ -8,7 +8,7 @@ import os # Importăm modulul 'os'
 # --- MQTT Broker settings ---
 # Preluăm adresa brokerului din variabila de mediu 'MQTT_BROKER_HOST'.
 # Dacă variabila nu este setată, folosim 'localhost' ca valoare implicită.
-BROKER = os.getenv('MQTT_BROKER_HOST', 'localhost')
+BROKER = "hivemq"
 PORT = 1883
 TOPIC_PUB = "test/topic/pub"
 TOPIC_SUB = "test/topic/sub"
