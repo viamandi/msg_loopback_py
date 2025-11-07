@@ -8,7 +8,7 @@ import os # Importăm modulul 'os'
 # --- MQTT Broker settings ---
 # Preluăm adresa brokerului din variabila de mediu 'MQTT_BROKER_HOST'.
 # Dacă variabila nu este setată, folosim 'localhost' ca valoare implicită.
-BROKER = "hivemq"
+BROKER = (os.getenv('MQTT_BROKER_HOST', 'localhost'))
 PORT = 1883
 TOPIC_PUB = "test/topic/pub"
 TOPIC_SUB = "test/topic/sub"
@@ -80,9 +80,12 @@ def subscriber_loop():
 
 # --- Main execution ---
 if __name__ == "__main__":
-    print("Pornirea publisher-ului si subscriber-ului MQTT...")
-
+    print("");
+    print("");
     print("Asteptare 15 secunde inainte de a porni clienții...")
+    print("Pornirea publisher-ului si subscriber-ului MQTT...")
+    print("");
+    print("");
     time.sleep(15)
 
     # Pornim publisher-ul într-un thread separat
