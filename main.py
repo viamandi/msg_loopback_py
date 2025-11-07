@@ -81,12 +81,8 @@ def subscriber_loop():
 # --- Main execution ---
 if __name__ == "__main__":
     print("");
-    print("");
-    print("Asteptare 15 secunde inainte de a porni clienții...")
     print("Pornirea publisher-ului si subscriber-ului MQTT...")
     print("");
-    print("");
-    time.sleep(15)
 
     # Pornim publisher-ul într-un thread separat
     pub_thread = threading.Thread(target=publisher_loop)
